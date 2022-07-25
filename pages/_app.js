@@ -16,11 +16,13 @@ import { useTranslation } from "react-i18next";
 import { indexQuery } from "_pages/index";
 import { IdQuery } from "_pages/profile/[id]";
 import { queryEnums } from "data";
+import FUBI from "subgraph/abis/fubi";
 import KlerosLiquid from "subgraph/abis/kleros-liquid";
 import ProofOfHumanity from "subgraph/abis/proof-of-humanity";
 import TransactionBatcher from "subgraph/abis/transaction-batcher";
 import UBI from "subgraph/abis/ubi";
 import {
+  FUBIAddress,
   UBIAddress,
   address,
   klerosLiquidAddress,
@@ -71,6 +73,7 @@ const contracts = [
     abi: TransactionBatcher,
     address: { [network]: transactionBatcherAddress },
   },
+  { name: "FUBI", abi: FUBI, address: { [network]: FUBIAddress } },
 ];
 
 function capitalize(string) {

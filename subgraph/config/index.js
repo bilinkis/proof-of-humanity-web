@@ -10,6 +10,7 @@ export const {
   block,
   klerosLiquidAddress,
   UBIAddress,
+  FUBIAddress,
   transactionBatcherAddress,
   klerosLiquidBlock,
 } = configs[network];
