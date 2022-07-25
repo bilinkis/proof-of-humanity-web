@@ -497,6 +497,7 @@ export default function SubmissionDetailsCard({
           status={status}
           registeredVouchers={registeredVouchers}
           firstRoundFullyFunded={firstRoundFullyFunded}
+          isSelf={isSelf}
         />
         {status === submissionStatusEnum.Vouching && (
           <Alert

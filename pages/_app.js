@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 
 import { indexQuery } from "_pages/index";
 import { IdQuery } from "_pages/profile/[id]";
+import { delegationsQuery } from "_pages/profile/[id]/delegations";
 import { queryEnums } from "data";
 import FUBI from "subgraph/abis/fubi";
 import KlerosLiquid from "subgraph/abis/kleros-liquid";
@@ -40,6 +41,7 @@ const { Content } = Layout;
 const queries = {
   "/": indexQuery,
   "/profile/:id": IdQuery,
+  "/profile/:id/delegations": delegationsQuery,
 };
 const wrapConnection = createWrapConnection(queries, queryEnums);
 const theme = {

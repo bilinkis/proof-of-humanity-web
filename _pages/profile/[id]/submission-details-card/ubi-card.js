@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   Flex,
+  NextLink,
   Text,
   useContract,
   useWeb3,
@@ -205,6 +206,7 @@ export default function UBICard({
   status,
   registeredVouchers,
   firstRoundFullyFunded,
+  isSelf
 }) {
   const { t } = useTranslation();
   const { web3 } = useWeb3();
@@ -554,7 +556,19 @@ export default function UBICard({
             currentBalanceOf={currentBalanceOf}
             sx={{ marginLeft: 2 }}
           />
+          
+          
         </Flex>
+        {isSelf && (
+            <NextLink href="/profile/[id]/delegations" as={`/profile/${submissionID}/delegations`}>
+              <Button
+              variant="secondary"
+              >
+                UBI Delegations
+              </Button>
+            </NextLink>
+            
+          )}
         {lastMintedSecond &&
           lastMintedSecond.gt(web3.utils.toBN(0)) &&
           typeof registered === "boolean" &&
