@@ -60,7 +60,7 @@ export default class Delegations extends React.Component {
       <>
         {this.state.flows?.length > 0 ? (
           <>
-            <Title level={4}>Your current delegations</Title>
+            <Title level={4} style={{margin:"0 auto"}}>Your current outgoing delegations</Title>
             <Row justify="center">
               {this.state.flows.map((flow, i) => {
                 return (
@@ -75,7 +75,7 @@ export default class Delegations extends React.Component {
                         )}
                         %
                       </Text>
-                      <Button onClick={() => this.cancelDelegation(flow.id)}>
+                      <Button className="button-orange" onClick={() => this.cancelDelegation(flow.id)}>
                         Cancel this Delegation
                       </Button>
                     </Card>
