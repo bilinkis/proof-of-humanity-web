@@ -39,12 +39,19 @@ export default class CreateDelegation extends React.Component {
     const implementation =
       this.state.target === "fubi" ? FUBIAddress : SUBIAddress;
     //console.log(implementation);
+    this.setState({loading:true})
     this.props.web3?.contracts?.UBI.methods
       .createDelegation(implementation, this.state.recepient, rate, "0x0")
       .send({
         from: this.props.submissionID,
         value: 0,
-      });
+      }).on('receipt',()=>{
+        window.location.reload(false);
+      })
+      .on('error',()=>{
+        message.error("There was an error with your transaction")
+        this.setState({loading:false})
+      })
   };
   render() {
     return (
@@ -83,7 +90,7 @@ export default class CreateDelegation extends React.Component {
                 onChange={(value) => this.setState({ rate: value })}
               ></Slider>
 
-              <Button onClick={this.createDelegation} className="button-orange">
+              <Button onClick={this.createDelegation} className="button-orange" loading={this.state.loading}>
                 Create delegation!
               </Button>
             </Card>

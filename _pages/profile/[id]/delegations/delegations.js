@@ -1,6 +1,6 @@
 import { Text } from "@kleros/components";
 import React from "react";
-import { Button, Card, Col, Row, Spin, Typography } from "antd";
+import { Button, Card, Col, message, Row, Spin, Typography } from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 import { FUBIAddress } from "subgraph/config";
@@ -50,7 +50,12 @@ export default class Delegations extends React.Component {
       .send({
         from: this.props.submissionID,
         value: 0,
-      });
+      }).on('receipt',()=>{
+        window.location.reload(false);
+      })
+      .on('error',()=>{
+        message.error("There was an error with your transaction")
+      })
   };
 
   render() {
@@ -61,7 +66,7 @@ export default class Delegations extends React.Component {
         {this.state.flows?.length > 0 ? (
           <>
             <Title level={4} style={{margin:"0 auto"}}>Your current outgoing delegations</Title>
-            <Row justify="center">
+            <Row justify="center" style={{marginBottom:"20px"}}>
               {this.state.flows.map((flow, i) => {
                 return (
                   <Col span={6} key={i}>
@@ -75,7 +80,7 @@ export default class Delegations extends React.Component {
                         )}
                         %
                       </Text>
-                      <Button className="button-orange" onClick={() => this.cancelDelegation(flow.id)}>
+                      <Button className="button-orange" onClick={() => this.cancelDelegation(flow.id)} loading={this.state.loading}>
                         Cancel this Delegation
                       </Button>
                     </Card>
