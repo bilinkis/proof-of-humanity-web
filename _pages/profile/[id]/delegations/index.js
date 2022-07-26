@@ -1,7 +1,7 @@
-import { useQuery } from "@kleros/components";
+import { useQuery, useWeb3 } from "@kleros/components";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { graphql } from "relay-hooks";
 
 import Delegations from "./delegations"
@@ -14,6 +14,7 @@ export default function ProfileDelegations() {
 
   const router = useRouter();
   const { query } = router;
+  const {web3} = useWeb3();
   // const isExpired =
   //   status === submissionStatusEnum.Registered &&
   //   props?.submission &&
@@ -34,7 +35,7 @@ export default function ProfileDelegations() {
       
       {props?.submission ? (
         <>
-          <Delegations submissionID={query.id} />
+          <Delegations submissionID={query.id} web3={web3} />
         </>
       ) : null}
     </>
